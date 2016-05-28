@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Sample illustrating the use of NotificationOptions.vibrate.">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>NotificationOptions.vibrate Sample</title>
+	</head>
+
+	<body>
+		<script>
+			navigator.serviceWorker.register('js/vibrate.js');
+
+			function showNotification() {
+				Notification.requestPermission(function(result) {
+					if (result === 'granted') {
+						navigator.serviceWorker.ready.then(function(registration) {
+							registration.showNotification('Vibration Sample', {
+								body: 'Buzz! Buzz!',
+								icon: '../images/touch/chrome-touch-icon-192x192.png',
+								vibrate: [200, 100, 200, 100, 200, 100, 200],
+								tag: 'vibration-sample'
+							});
+						});
+					}
+				});
+			}
+
+		</script>
+		<h3>JavaScript Snippet</h3>
+		<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">'sw.js'</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">showNotification</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Notification</span><span class="p">.</span><span class="nx">requestPermission</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">result</span> <span class="o">===</span> <span class="s1">'granted'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span><span class="p">.</span><span class="nx">ready</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">registration</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">registration</span><span class="p">.</span><span class="nx">showNotification</span><span class="p">(</span><span class="s1">'Vibration Sample'</span><span class="p">,</span> <span class="p">{</span>
+          <span class="na">body</span><span class="p">:</span> <span class="s1">'Buzz! Buzz!'</span><span class="p">,</span>
+          <span class="na">icon</span><span class="p">:</span> <span class="s1">'../images/touch/chrome-touch-icon-192x192.png'</span><span class="p">,</span>
+          <span class="na">vibrate</span><span class="p">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
+          <span class="na">tag</span><span class="p">:</span> <span class="s1">'vibration-sample'</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span></code></pre></figure>
+		<div>
+			<button onclick="showNotification()">Show notification</button>
+		</div>
+		<script>
+
+
+		</script>
+	</body>
+
+</html>
